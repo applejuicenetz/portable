@@ -3,7 +3,7 @@
 ## Zusammensetzung 
 
 Die Portable Version von appleJuice setzt sich zusammen aus:
-- der aktuellsten openJDK JRE Version 1.8 von [ojdkbuild](https://github.com/ojdkbuild/ojdkbuild/releases) 
+- der aktuellsten openJDK JRE Version 1.8 von [AdoptOpenJDK](https://github.com/AdoptOpenJDK/openjdk8-binaries) 
 - der aktuellsten [AJCoreGUI](https://github.com/applejuicenet/gui-java/releases)
 - dem aktuellsten [AJCore](https://github.com/applejuicenet/core/releases)
 - extra Wrapper EXE Dateien für die Portable Version (siehe nachfolgend)
