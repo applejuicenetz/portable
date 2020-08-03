@@ -12,11 +12,14 @@ rm -rf ${BUILD_NAME}
 mkdir -p ${BUILD_NAME}/Core
 mkdir -p ${BUILD_NAME}/GUI
 
+#### ship also fixajfsp
+curl ${CURL_OPTS} -o ./${BUILD_NAME}/fixajfsp.exe https://github.com/applejuicenet/tools/releases/latest/download/fixajfsp.exe
+
 #### Core
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/ajcore.jar https://github.com/applejuicenet/core/releases/latest/download/ajcore.jar
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/ajnetmask.dll https://github.com/applejuicenet/ajnetmask/releases/latest/download/ajnetmask-i386.dll
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/TrayIcon12.dll https://github.com/applejuicenet/core/releases/latest/download/TrayIcon12_i386.dll
-cp ./AJCore.exe ./${BUILD_NAME}/
+cp ./AJCore_x86.exe ./${BUILD_NAME}/AJCore.exe
 
 ### GUI
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/GUI/AJCoreGUI.zip https://github.com/applejuicenet/gui-java/releases/latest/download/AJCoreGUI.zip
@@ -33,5 +36,6 @@ rmdir ./${BUILD_NAME}/Java/jdk*/
 
 ## create Zip
 zip -r ${BUILD_NAME}.zip ${BUILD_NAME}/
-md5 -q ${BUILD_NAME}.zip > ${BUILD_NAME}.md5sum
+md5 ${BUILD_NAME}.zip > ${BUILD_NAME}.zip.md5.txt
+shasum -a 256 ${BUILD_NAME}.zip > ${BUILD_NAME}.zip.sha265.txt
 rm -rf ${BUILD_NAME}
