@@ -8,7 +8,7 @@ var     verzeichnis, argumente, arg: string;
 begin
 verzeichnis:=ExtractFilePath(ParamStr(0)) + '\GUI';
 if fileexists(verzeichnis+'\AJCoreGUI.jar')=true then begin
-        argumente:='-jar AJCoreGUI.jar';
+        argumente:='-Duser.home='+ ExtractFilePath(ParamStr(0)) +' -jar AJCoreGUI.jar';
         i:=1;
         while ParamStr(i)<>'' do begin
                 arg:=ParamStr(i);
