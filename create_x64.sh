@@ -18,7 +18,7 @@ curl ${CURL_OPTS} -o ./${BUILD_NAME}/fixajfsp.exe https://github.com/applejuicen
 #### Core
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/ajcore.jar https://github.com/applejuicenet/core/releases/latest/download/ajcore.jar
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/ajnetmask.dll https://github.com/applejuicenet/ajnetmask/releases/latest/download/ajnetmask-x86_64.dll
-curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/TrayIcon12.dll https://github.com/applejuicenet/core/releases/latest/download/TrayIcon12_x86_x64.dll
+curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/TrayIcon12.dll https://github.com/applejuicenet/core/releases/download/0.31.149.110/TrayIcon12_x86_x64.dll
 cp ./AJCore_x64.exe ./${BUILD_NAME}/AJCore.exe
 
 ### GUI
