@@ -26,11 +26,11 @@ So denken beide Anwendungen, das Heimatverzeichnis des Benutzers ist der aktuell
 Das hat den Vorteil, dass alle persistenten Dateien im `appleJuice` Ordner des Portable Clients liegen!
 
 ## neues Release erstellen
-Zum erstellen eines neuen Releases muss:
-- dieses Repository einfach auschecken/herunterladen
-- die [create_x86.sh](create_x86.sh) und [create_x64.sh](create_x64.sh) ausführen
+Zum Erstellen einer neuen Version kann die Datei [create.sh](create.sh) wie folgt ausgeführt werden:
+- `./create.sh x64` -> 64bit
+- `./create.sh x86` -> 32bit
 
-Alle benötigten Komponenten werde in die richtige Struktur gebracht und Abhängigkeiten heruntergeladen
+Alle benötigten Komponenten/Abhängigkeiten werden heruntergeladen und in die richtige Struktur gebracht.
  
 ## Quellcode
 
