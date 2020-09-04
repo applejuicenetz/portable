@@ -71,6 +71,5 @@ rmdir ./${BUILD_NAME}/Java/jdk*/
 
 ## create Zip
 zip -r ${BUILD_NAME}.zip ${BUILD_NAME}/
-md5 ${BUILD_NAME}.zip >${BUILD_NAME}.zip.md5.txt
-shasum -a 256 ${BUILD_NAME}.zip >${BUILD_NAME}.zip.sha265.txt
+shasum -a 256 ${BUILD_NAME}.zip > ${BUILD_NAME}.zip.sha256.txt
 rm -rf ${BUILD_NAME}
