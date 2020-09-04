@@ -26,6 +26,13 @@ So denken beide Anwendungen, das Heimatverzeichnis des Benutzers ist der aktuell
 Das hat den Vorteil, dass alle persistenten Dateien im `appleJuice` Ordner des Portable Clients liegen!
 
 ## neues Release erstellen
+
+### github action
+Einfach ein `neues Release` mit Changelog als Kommentar erstellen.
+
+Es wird dann automatisch via `github action` alles ausgeführt, die fertigen ZIP-Dateien an das Release attached!
+
+### manuel
 Zum Erstellen einer neuen Version kann die Datei [create.sh](create.sh) wie folgt ausgeführt werden:
 - `./create.sh x64` -> 64bit
 - `./create.sh x86` -> 32bit

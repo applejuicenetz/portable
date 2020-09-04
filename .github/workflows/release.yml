@@ -1,4 +1,4 @@
-name: Upload Release Asset
+name: build
 
 on:
     create:
@@ -16,30 +16,17 @@ jobs:
                     ./create.sh x86
                     ./create.sh x64
 
-            -   name: Create Release
-                id: create_release
-                uses: actions/create-release@v1
-                env:
-                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                with:
-                    tag_name: ${{ github.ref }}
-                    release_name: ${{ github.ref }}
-                    draft: false
-                    prerelease: false
-
             -   name: Upload Release Asset
                 id: upload-release-asset
                 uses: meeDamian/github-release@2.0
                 with:
                     token: ${{ secrets.GITHUB_TOKEN }}
+                    allow_override: true
+                    gzip: false
                     body: >
                         appleJuice, Portable, ohne Setup, mit Java, einfach downloaden und starten.
-
-                        Changelog befindet sich [hier](https://github.com/applejuicenet/portable/blob/master/CHANGELOG.md)
                     files: >
                         appleJuice-Portable-x86.zip
-                        appleJuice-Portable-x86.zip.md5.txt
-                        appleJuice-Portable-x86.zip.sha265.txt
-                        appleJuice-Portable-x86.zip
-                        appleJuice-Portable-x86.zip.md5.txt
-                        appleJuice-Portable-x86.zip.sha265.txt
+                        appleJuice-Portable-x86.zip.sha256.txt
+                        appleJuice-Portable-x64.zip
+                        appleJuice-Portable-x64.zip.sha256.txt
