@@ -4,21 +4,21 @@ set -ex
 
 CURL_OPTS="--fail --silent --location"
 
-TOOL_FIXAJFSP="https://github.com/applejuicenet/tools/releases/latest/download/fixajfsp.exe"
+TOOL_FIXAJFSP="https://github.com/applejuicenetz/tools/releases/latest/download/fixajfsp.exe"
 
-AJCORE_JAR="https://github.com/applejuicenet/core/releases/latest/download/ajcore.jar"
-AJGUI_ZIP="https://github.com/applejuicenet/gui-java/releases/latest/download/AJCoreGUI.zip"
+AJCORE_JAR="https://github.com/applejuicenetz/core/releases/latest/download/ajcore.jar"
+AJGUI_ZIP="https://github.com/applejuicenetz/gui-java/releases/latest/download/AJCoreGUI.zip"
 
-AJGUI_EXE="https://github.com/applejuicenet/portable/raw/master/AJCoreGUI.exe"
+AJGUI_EXE="https://github.com/applejuicenetz/portable/raw/master/AJCoreGUI.exe"
 
-AJCORE_EXE_x86="https://github.com/applejuicenet/portable/raw/master/AJCore_x86.exe"
-AJCORE_EXE_x64="https://github.com/applejuicenet/portable/raw/master/AJCore_x64.exe"
+AJCORE_EXE_x86="https://github.com/applejuicenetz/portable/raw/master/AJCore_x86.exe"
+AJCORE_EXE_x64="https://github.com/applejuicenetz/portable/raw/master/AJCore_x64.exe"
 
-AJNETMASK_x86="https://github.com/applejuicenet/ajnetmask/releases/latest/download/ajnetmask-i386.dll"
-AJNETMASK_x64="https://github.com/applejuicenet/ajnetmask/releases/latest/download/ajnetmask-x86_64.dll"
+AJNETMASK_x86="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-i386.dll"
+AJNETMASK_x64="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-x86_64.dll"
 
-TRAYICON_x86="https://github.com/applejuicenet/core-trayicon/releases/download/1.0.0/TrayIcon12_x86.dll"
-TRAYICON_x64="https://github.com/applejuicenet/core-trayicon/releases/download/1.0.0/TrayIcon12_x64.dll"
+TRAYICON_x86="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x86.dll"
+TRAYICON_x64="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x64.dll"
 
 JRE_x86="https://api.adoptopenjdk.net/v2/binary/releases/openjdk8?openjdk_impl=hotspot&os=windows&arch=x32&release=latest&type=jre"
 JRE_x64="https://api.adoptopenjdk.net/v2/binary/releases/openjdk8?openjdk_impl=hotspot&os=windows&arch=x64&release=latest&type=jre"
