@@ -11,34 +11,33 @@ AJGUI_ZIP="https://github.com/applejuicenetz/gui-java/releases/latest/download/A
 
 AJGUI_EXE="https://github.com/applejuicenetz/portable/raw/master/AJCoreGUI.exe"
 
-AJCORE_EXE_x86="https://github.com/applejuicenetz/portable/raw/master/AJCore_x86.exe"
-AJCORE_EXE_x64="https://github.com/applejuicenetz/portable/raw/master/AJCore_x64.exe"
+case "${1}" in
+x64)
+  # JRE="https://api.adoptopenjdk.net/v3/binary/latest/8/ga/windows/x64/jre/hotspot/normal/adoptopenjdk?project=jdk"
+  JRE="https://api.adoptopenjdk.net/v3/binary/version/jdk8u242-b08/windows/x64/jre/hotspot/normal/adoptopenjdk?project=jdk"
+  AJNETMASK="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-x86_64.dll"
+  TRAYICON="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x64.dll"
+  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/AJCore_x64.exe"
+  AJCORE_NOGUI_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/AJCore_x64_nogui.exe"
 
-AJNETMASK_x86="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-i386.dll"
-AJNETMASK_x64="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-x86_64.dll"
+  BUILD_NAME="appleJuice-Portable-x64"
+  ;;
 
-TRAYICON_x86="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x86.dll"
-TRAYICON_x64="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x64.dll"
+x32)
+  JRE="https://api.adoptopenjdk.net/v3/binary/latest/8/ga/windows/x32/jre/hotspot/normal/adoptopenjdk?project=jdk"
+  AJNETMASK="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-i386.dll"
+  TRAYICON="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x86.dll"
+  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/AJCore_x86.exe"
+  AJCORE_NOGUI_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/AJCore_x86_nogui.exe"
 
-JRE_x86="https://api.adoptopenjdk.net/v2/binary/releases/openjdk8?openjdk_impl=hotspot&os=windows&arch=x32&release=latest&type=jre"
-JRE_x64="https://api.adoptopenjdk.net/v2/binary/releases/openjdk8?openjdk_impl=hotspot&os=windows&arch=x64&release=latest&type=jre"
+  BUILD_NAME="appleJuice-Portable-x86"
+  ;;
 
-BUILD_NAME_x86="appleJuice-Portable-x86"
-BUILD_NAME_x64="appleJuice-Portable-x64"
-
-if [ "$1" = "x64" ]; then
-  BUILD_NAME=$BUILD_NAME_x64
-  AJNETMASK=$AJNETMASK_x64
-  TRAYICON=$TRAYICON_x64
-  AJCORE_EXE=$AJCORE_EXE_x64
-  JRE=$JRE_x64
-else
-  BUILD_NAME=$BUILD_NAME_x86
-  AJNETMASK=$AJNETMASK_x86
-  TRAYICON=$TRAYICON_x86
-  AJCORE_EXE=$AJCORE_EXE_x86
-  JRE=$JRE_x86
-fi
+*)
+  echo "unsupported arch"
+  exit 1
+  ;;
+esac
 
 cd $(dirname $0)
 
@@ -55,6 +54,7 @@ curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/ajcore.jar ${AJCORE_JAR}
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/ajnetmask.dll ${AJNETMASK}
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/TrayIcon12.dll ${TRAYICON}
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/AJCore.exe ${AJCORE_EXE}
+curl ${CURL_OPTS} -o ./${BUILD_NAME}/AJCore_nogui.exe ${AJCORE_NOGUI_EXE}
 
 ### GUI
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/GUI/AJCoreGUI.zip ${AJGUI_ZIP}
@@ -71,5 +71,5 @@ rmdir ./${BUILD_NAME}/Java/jdk*/
 
 ## create Zip
 zip -r ${BUILD_NAME}.zip ${BUILD_NAME}/
-shasum -a 256 ${BUILD_NAME}.zip > ${BUILD_NAME}.zip.sha256.txt
+shasum -a 256 ${BUILD_NAME}.zip >${BUILD_NAME}.zip.sha256.txt
 rm -rf ${BUILD_NAME}

@@ -13,7 +13,7 @@ jobs:
 
             -   name: Build project
                 run: |
-                    ./create.sh x86
+                    ./create.sh x32
                     ./create.sh x64
 
             -   name: Upload Release Asset
