@@ -10,9 +10,9 @@ appleJuice, Portable, ohne Setup, mit Java, einfach downloaden und starten.
 ## Zusammensetzung 
 
 Die Portable Version von appleJuice setzt sich zusammen aus:
-- der aktuellsten openJDK JRE Version 1.8 von [AdoptOpenJDK](https://github.com/AdoptOpenJDK/openjdk8-binaries) 
-- der aktuellsten [AJCoreGUI](https://github.com/applejuicenetz/gui-java/releases)
+- der letzten openJDK ZULU JRE Version 1.7 von [Azul](https://www.azul.com/downloads/) 
 - dem aktuellsten [AJCore](https://github.com/applejuicenetz/core/releases)
+- der aktuellsten [AJCoreGUI](https://github.com/applejuicenetz/gui-java/releases)
 - extra Wrapper EXE Dateien für die Portable Version (siehe nachfolgend)
 
 ## RAM (-Xmx)
@@ -50,18 +50,6 @@ nachfolgend finden sich Erklärungen zu den extra für die Portable erstellten K
 
 Alle ausführbaren Dateien wurden mit [UPX](https://upx.github.io/) verkleinert.
 
-### Starter: AJCore.exe
+### Starter
 
-Die `AJCore.exe` wurde mit [Launch4j](http://launch4j.sourceforge.net) erstellt.
-Es wird immer das mitgelieferte JRE im `Java` Ordner genommen.
-
-Der `AJCore` wird nicht mit `-c` bzw. `--configinjardir` gestartet (siehe _Home Verzeichnis_)!
-
-### Starter: AjCoreGUI.exe
-
-Der original [Quellcode](https://github.com/applejuicenetz/portable/tree/master/AJClientGUI/starterexe) für `AJCoreGUI.exe` wurde für die Portable Version mittels [Lazarus](https://www.lazarus-ide.org) für diese Version [angepasst](AJCoreGUI.lpr) und neu kompiliert,
-so das ebenfalls die mitgelieferte JRE genommen wird.
-
-Das [Icon](ajgui.ico) wurde extra geändert, damit es sich zum Original unterscheidet.
-
-Außerdem wird beim erstellen der ZIP Datei die original `AjcoreGUI.exe` aus dem GUI Ordner entfernt um eine Verwechslung zu vermeiden.
+die beiden `AJ*.exe` starter funktionieren nur bei dieser Portable Version

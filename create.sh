@@ -9,27 +9,24 @@ TOOL_FIXAJFSP="https://github.com/applejuicenetz/tools/releases/latest/download/
 AJCORE_JAR="https://github.com/applejuicenetz/core/releases/latest/download/ajcore.jar"
 AJGUI_ZIP="https://github.com/applejuicenetz/gui-java/releases/latest/download/AJCoreGUI.zip"
 
-AJGUI_EXE="https://github.com/applejuicenetz/portable/raw/master/AJCoreGUI.exe"
+AJGUI_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/gui/AJCoreGUI.exe"
 
 case "${1}" in
 x64)
-  # JRE="https://api.adoptopenjdk.net/v3/binary/latest/8/ga/windows/x64/jre/hotspot/normal/adoptopenjdk?project=jdk"
-  JRE="https://api.adoptopenjdk.net/v3/binary/version/jdk8u242-b08/windows/x64/jre/hotspot/normal/adoptopenjdk?project=jdk"
+  JRE_CORE="https://github.com/applejuicenetz/zulu-jre7/releases/latest/download/jre7.x64.zip"
   AJNETMASK="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-x86_64.dll"
-  TRAYICON="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x64.dll"
-  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/AJCore_x64.exe"
-  AJCORE_NOGUI_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/AJCore_x64_nogui.exe"
-
+  TRAYICON="https://github.com/applejuicenetz/core-trayicon/releases/latest/download/TrayIcon12_x64.dll"
+  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/core/AJCore_x64.exe"
+  JRE_GUI="https://api.adoptium.net/v3/binary/latest/11/ga/windows/x64/jre/hotspot/normal/eclipse?project=jdk"
   BUILD_NAME="appleJuice-Portable-x64"
   ;;
 
-x32)
-  JRE="https://api.adoptopenjdk.net/v3/binary/latest/8/ga/windows/x32/jre/hotspot/normal/adoptopenjdk?project=jdk"
+x86)
+  JRE_CORE="https://github.com/applejuicenetz/zulu-jre7/releases/latest/download/jre7.x86.zip"
   AJNETMASK="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-i386.dll"
-  TRAYICON="https://github.com/applejuicenetz/core-trayicon/releases/download/1.0.0/TrayIcon12_x86.dll"
-  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/AJCore_x86.exe"
-  AJCORE_NOGUI_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/AJCore_x86_nogui.exe"
-
+  TRAYICON="https://github.com/applejuicenetz/core-trayicon/releases/latest/download/TrayIcon12_x86.dll"
+  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/core/AJCore_x86.exe"
+  JRE_GUI="https://api.adoptium.net/v3/binary/latest/11/ga/windows/x86/jre/hotspot/normal/eclipse?project=jdk"
   BUILD_NAME="appleJuice-Portable-x86"
   ;;
 
@@ -54,7 +51,11 @@ curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/ajcore.jar ${AJCORE_JAR}
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/ajnetmask.dll ${AJNETMASK}
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/TrayIcon12.dll ${TRAYICON}
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/AJCore.exe ${AJCORE_EXE}
-curl ${CURL_OPTS} -o ./${BUILD_NAME}/AJCore_nogui.exe ${AJCORE_NOGUI_EXE}
+
+### JRE Core
+curl ${CURL_OPTS} -o ./${BUILD_NAME}/Core/Java.zip ${JRE_CORE}
+unzip ./${BUILD_NAME}/Core/Java.zip -d ./${BUILD_NAME}/Core/
+rm ./${BUILD_NAME}/Core/Java.zip
 
 ### GUI
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/GUI/AJCoreGUI.zip ${AJGUI_ZIP}
@@ -62,12 +63,12 @@ unzip ./${BUILD_NAME}/GUI/AJCoreGUI.zip -d ./${BUILD_NAME}/GUI/
 rm ./${BUILD_NAME}/GUI/AJCoreGUI.zip ./${BUILD_NAME}/GUI/AJCoreGUI.exe
 curl ${CURL_OPTS} -o ./${BUILD_NAME}/AJCoreGUI.exe ${AJGUI_EXE}
 
-### JRE
-curl ${CURL_OPTS} -o ./${BUILD_NAME}/Java.zip ${JRE}
-unzip ./${BUILD_NAME}/Java.zip -d ./${BUILD_NAME}/Java/
-rm ./${BUILD_NAME}/Java.zip
-mv ./${BUILD_NAME}/Java/jdk*/* ./${BUILD_NAME}/Java/
-rmdir ./${BUILD_NAME}/Java/jdk*/
+### JRE Core
+curl ${CURL_OPTS} -o ./${BUILD_NAME}/GUI/Java.zip ${JRE_GUI}
+unzip ./${BUILD_NAME}/GUI/Java.zip -d ./${BUILD_NAME}/GUI/Java/
+rm ./${BUILD_NAME}/GUI/Java.zip
+mv ./${BUILD_NAME}/GUI/Java/jdk*/* ./${BUILD_NAME}/GUI/Java/
+rmdir ./${BUILD_NAME}/GUI/Java/jdk*/
 
 ## create Zip
 zip -r ${BUILD_NAME}.zip ${BUILD_NAME}/

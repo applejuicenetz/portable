@@ -3,21 +3,24 @@
   <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
   <jar>.\Core\ajcore.jar</jar>
-  <outfile>AJCore_x86.exe</outfile>
+  <outfile>AJCore_x64.exe</outfile>
   <chdir>.\Core\</chdir>
   <priority>normal</priority>
   <downloadUrl>https://www.java.com/de/download/manual.jsp</downloadUrl>
-  <supportUrl>https://applejuicenet.cc/</supportUrl>
+  <supportUrl>https://applejuicenet.cc</supportUrl>
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <icon>ajcore.ico</icon>
+  <singleInstance>
+    <mutexName>appleJuice Client</mutexName>
+  </singleInstance>
   <jre>
-    <path>Java</path>
-    <bundledJre64Bit>false</bundledJre64Bit>
+    <path>Core\Java</path>
+    <bundledJre64Bit>true</bundledJre64Bit>
     <bundledJreAsFallback>false</bundledJreAsFallback>
     <minVersion>1.7</minVersion>
-    <jdkPreference>preferJre</jdkPreference>
-    <runtimeBits>32</runtimeBits>
+    <jdkPreference>jreOnly</jdkPreference>
+    <runtimeBits>64</runtimeBits>
     <maxHeapPercent>50</maxHeapPercent>
     <opt>-Duser.home=&quot;%EXEDIR%&quot;</opt>
   </jre>
