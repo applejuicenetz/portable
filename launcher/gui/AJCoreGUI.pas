@@ -15,9 +15,12 @@ begin
         i := 1;
 
         for i := 1 to paramCount() do
-        begin
-             argumente := argumente +' ' + paramStr(i);
-        end;
+            while ParamStr(i)<>'' do begin
+                arg:=ParamStr(i);
+                if copy(arg,0,8)='ajfsp://' then arg:='-link='+arg;
+                argumente:=argumente+' "'+arg+'"';
+                i:=i+1;
+            end;
 
         if (fileexists(verzeichnis + '\Java\bin\javaw.exe')=true) then
           begin
