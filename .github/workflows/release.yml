@@ -11,10 +11,13 @@ jobs:
             -   name: Checkout code
                 uses: actions/checkout@v2
 
-            -   name: Build project
-                run: |
-                    ./create.sh x86
-                    ./create.sh x64
+            -   name: build portable x64
+                id: build-portable-x64
+                run: ./create.sh x64
+
+            -   name: build portable x86
+                id: build-portable-x86
+                run: ./create.sh x86
 
             -   name: Upload Release Asset
                 id: upload-release-asset
