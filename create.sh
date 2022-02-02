@@ -72,5 +72,4 @@ rmdir ./${BUILD_NAME}/GUI/Java/jdk*/
 
 ## create Zip
 zip -r ${BUILD_NAME}.zip ${BUILD_NAME}/
-shasum -a 256 ${BUILD_NAME}.zip >${BUILD_NAME}.zip.sha256.txt
-rm -rf ${BUILD_NAME}/
+rm -rf ${BUILD_NAME}
