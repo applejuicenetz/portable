@@ -9,14 +9,14 @@ TOOL_FIXAJFSP="https://github.com/applejuicenetz/tools/releases/latest/download/
 AJCORE_JAR="https://github.com/applejuicenetz/core/releases/latest/download/ajcore.jar"
 AJGUI_ZIP="https://github.com/applejuicenetz/gui-java/releases/latest/download/AJCoreGUI.zip"
 
-AJGUI_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/gui/AJCoreGUI.exe"
+AJGUI_EXE="https://github.com/applejuicenetz/portable/raw/main/launcher/gui/AJCoreGUI.exe"
 
 case "${1}" in
 x64)
   JRE_CORE="https://github.com/applejuicenetz/zulu-jre7/releases/latest/download/jre7.x64.zip"
   AJNETMASK="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-x86_64.dll"
   TRAYICON="https://github.com/applejuicenetz/core-trayicon/releases/latest/download/TrayIcon12_x64.dll"
-  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/core/AJCore_x64.exe"
+  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/main/launcher/core/AJCore_x64.exe"
   JRE_GUI="https://api.adoptium.net/v3/binary/latest/11/ga/windows/x64/jre/hotspot/normal/eclipse?project=jdk"
   BUILD_NAME="appleJuice-Portable-x64"
   ;;
@@ -25,7 +25,7 @@ x86)
   JRE_CORE="https://github.com/applejuicenetz/zulu-jre7/releases/latest/download/jre7.x86.zip"
   AJNETMASK="https://github.com/applejuicenetz/ajnetmask/releases/latest/download/ajnetmask-i386.dll"
   TRAYICON="https://github.com/applejuicenetz/core-trayicon/releases/latest/download/TrayIcon12_x86.dll"
-  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/master/launcher/core/AJCore_x86.exe"
+  AJCORE_EXE="https://github.com/applejuicenetz/portable/raw/main/launcher/core/AJCore_x86.exe"
   JRE_GUI="https://api.adoptium.net/v3/binary/latest/11/ga/windows/x86/jre/hotspot/normal/eclipse?project=jdk"
   BUILD_NAME="appleJuice-Portable-x86"
   ;;
