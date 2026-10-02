@@ -10,10 +10,10 @@ appleJuice, Portable, ohne Setup, mit Java, einfach downloaden und starten.
 ## Zusammensetzung 
 
 Die Portable Version von appleJuice setzt sich zusammen aus:
-- der letzten openJDK ZULU JRE Version 1.7 von [Azul](https://www.azul.com/downloads/) 
+- der letzten openJDK ZULU JRE Version 25 von [Azul](https://www.azul.com/downloads/)
 - dem aktuellsten [AJCore](https://github.com/applejuicenetz/core/releases)
 - der aktuellsten [AJCoreGUI](https://github.com/applejuicenetz/gui-java/releases)
-- extra Wrapper EXE Dateien für die Portable Version (siehe nachfolgend)
+- nativen Startern (`Core\Core.exe`, `GUI\GUI.exe`) mit eingebauter Java 25 Runtime, erzeugt per `jpackage --type app-image`
 
 ## RAM (-Xmx)
 Der AJCore bekommt automatisch `50%` des _aktuell_ freien RAM.
@@ -24,7 +24,7 @@ Um den Wert fest zu definieren, muss die Datei `AJCore.l4j.ini` mit dem Inhalt `
 
 ## Home Verzeichnis 
 
-Beide Exe Dateien bekommen den Parameter `-Duser.home=.` mitgegeben.
+Beide Starter bekommen den Parameter `-Duser.home=$ROOTDIR/..` mitgegeben.
 
 So denken beide Anwendungen, das Heimatverzeichnis des Benutzers ist der aktuelle Ordner der EXE Dateien. :sunglasses: 
 
@@ -39,17 +39,12 @@ Es wird dann automatisch via `github action` alles ausgeführt, die fertigen ZIP
 
 ### manuel
 Zum Erstellen einer neuen Version kann die Datei [create.sh](create.sh) wie folgt ausgeführt werden:
-- `./create.sh x64` -> 64bit
-- `./create.sh x86` -> 32bit
+- `./create.sh amd64` -> Windows AMD64
+- `./create.sh aarch64` -> Windows ARM64
 
 Alle benötigten Komponenten/Abhängigkeiten werden heruntergeladen und in die richtige Struktur gebracht.
  
-## Quellcode
+## Build
 
-nachfolgend finden sich Erklärungen zu den extra für die Portable erstellten Komponenten.
-
-Alle ausführbaren Dateien wurden mit [UPX](https://upx.github.io/) verkleinert.
-
-### Starter
-
-die beiden `AJ*.exe` starter funktionieren nur bei dieser Portable Version
+`create.sh` muss auf einem Windows Host mit JDK 25 der jeweiligen Architektur laufen (GitHub Action: `windows-2025` für AMD64, `windows-11-arm` für ARM64).
+Die Action kann auch manuell per `workflow_dispatch` gestartet werden, dann wird kein Release erstellt, die ZIPs liegen als Artefakt am Run.

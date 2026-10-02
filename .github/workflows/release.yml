@@ -1,54 +1,64 @@
 name: release
 
 on:
-  create:
+  push:
     tags:
+      - '*'
+  workflow_dispatch:
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2025
+            arch: amd64
+          - runner: windows-11-arm
+            arch: aarch64
+    runs-on: ${{ matrix.runner }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
 
-      - name: build portable x64
-        id: build-x64
-        run: ./create.sh x64
-
-      - name: build portable x86
-        id: build-portable-x86
-        run: ./create.sh x86
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-java@v6
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref_name }}
-          draft: false
-          prerelease: false
+          distribution: zulu
+          java-version: '25'
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+
+      - name: build portable ${{ matrix.arch }}
+        shell: bash
+        run: ./create.sh ${{ matrix.arch }}
+
+      - name: zip
+        shell: pwsh
+        run: Compress-Archive -Path appleJuice-Portable-${{ matrix.arch }} -DestinationPath appleJuice-Portable-${{ matrix.arch }}.zip
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: appleJuice-Portable-${{ matrix.arch }}
+          path: appleJuice-Portable-${{ matrix.arch }}.zip
+          if-no-files-found: error
+
+  release:
+    needs: build
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          path: dist
+          merge-multiple: true
+
+      - uses: softprops/action-gh-release@v3
+        with:
           body: appleJuice, Portable, ohne Setup, mit Java, einfach downloaden und starten.
-
-      - name: upload x64
-        id: upload-x64
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: appleJuice-Portable-x64.zip
-          asset_name: appleJuice-Portable-x64.zip
-          asset_content_type: application/zip
-
-      - name: upload x86
-        id: upload-x86
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: appleJuice-Portable-x86.zip
-          asset_name: appleJuice-Portable-x86.zip
-          asset_content_type: application/zip
+          fail_on_unmatched_files: true
+          files: |
+            dist/appleJuice-Portable-amd64.zip
+            dist/appleJuice-Portable-aarch64.zip
