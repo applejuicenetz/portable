@@ -30,21 +30,9 @@ So denken beide Anwendungen, das Heimatverzeichnis des Benutzers ist der aktuell
 
 Das hat den Vorteil, dass alle persistenten Dateien im `appleJuice` Ordner des Portable Clients liegen!
 
-## neues Release erstellen
+## Aktualisierungen
 
-### github action
-Einfach ein `neues Release` mit Changelog als Kommentar erstellen.
-
-Es wird dann automatisch via `github action` alles ausgeführt, die fertigen ZIP-Dateien an das Release attached!
-
-### manuel
-Zum Erstellen einer neuen Version kann die Datei [create.sh](create.sh) wie folgt ausgeführt werden:
-- `./create.sh amd64` -> Windows AMD64
-- `./create.sh aarch64` -> Windows ARM64
-
-Alle benötigten Komponenten/Abhängigkeiten werden heruntergeladen und in die richtige Struktur gebracht.
- 
-## Build
-
-`create.sh` muss auf einem Windows Host mit JDK 25 der jeweiligen Architektur laufen (GitHub Action: `windows-2025` für AMD64, `windows-11-arm` für ARM64).
-Die Action kann auch manuell per `workflow_dispatch` gestartet werden, dann wird kein Release erstellt, die ZIPs liegen als Artefakt am Run.
+Neue JavaGUI-Releases starten automatisch einen Portable-Build. Nach erfolgreichem
+Build erscheint ein neues Portable-Patch-Release, zum Beispiel `4.0.2` nach `4.0.1`,
+mit ZIP-Dateien für Windows AMD64 und ARM64. Auch manuell gestartete Builds
+veröffentlichen ein neues Patch-Release.

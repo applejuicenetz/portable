@@ -5,6 +5,15 @@ on:
     tags:
       - '*'
   workflow_dispatch:
+  repository_dispatch:
+    types: [portable-release]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portable-release
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -45,11 +54,30 @@ jobs:
 
   release:
     needs: build
-    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+
+      - name: Select release tag
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$GITHUB_REF_TYPE" = tag ]; then
+            tag="$GITHUB_REF_NAME"
+          else
+            tag="$(git tag --list | python3 scripts/next-release-tag.py)"
+          fi
+          printf 'tag=%s\n' "$tag" >> "$GITHUB_OUTPUT"
+
       - uses: actions/download-artifact@v8
         with:
           path: dist
@@ -57,6 +85,8 @@ jobs:
 
       - uses: softprops/action-gh-release@v3
         with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          target_commitish: ${{ github.sha }}
           body: appleJuice, Portable, ohne Setup, mit Java, einfach downloaden und starten.
           fail_on_unmatched_files: true
           files: |
