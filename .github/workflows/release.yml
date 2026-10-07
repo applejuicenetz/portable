@@ -51,6 +51,7 @@ jobs:
           name: appleJuice-Portable-${{ matrix.arch }}
           path: appleJuice-Portable-${{ matrix.arch }}.zip
           if-no-files-found: error
+          retention-days: 1
 
   release:
     needs: build
