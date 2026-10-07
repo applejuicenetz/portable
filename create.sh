@@ -59,7 +59,11 @@ jpackage --type app-image --name Core \
   --add-modules java.desktop,java.management,java.naming,java.sql,java.xml,jdk.crypto.ec,jdk.unsupported \
   --java-options --enable-native-access=ALL-UNNAMED \
   --java-options -XX:MaxRAMPercentage=50 \
-  --java-options "${HOME_OPT}"
+  --java-options "${HOME_OPT}" \
+  --java-options '-XX:ErrorFile=$ROOTDIR/../appleJuice/hs_err_pid%p.log'
+
+# JVM does not create the ErrorFile directory, so it must exist at crash time
+mkdir -p "${BUILD_NAME}/appleJuice"
 
 jpackage --type app-image --name GUI \
   --dest "${BUILD_NAME}" \

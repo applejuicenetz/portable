@@ -30,6 +30,8 @@ So denken beide Anwendungen, das Heimatverzeichnis des Benutzers ist der aktuell
 
 Das hat den Vorteil, dass alle persistenten Dateien im `appleJuice` Ordner des Portable Clients liegen!
 
+Bei einem JVM-Absturz schreibt der Core die Datei `hs_err_pid<PID>.log` ebenfalls dorthin (`-XX:ErrorFile`).
+
 ## Aktualisierungen
 
 Neue JavaGUI-Releases starten automatisch einen Portable-Build. Nach erfolgreichem
