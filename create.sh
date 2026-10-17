@@ -5,7 +5,7 @@ set -ex
 # needs JDK 25 (jpackage) of the same architecture as the target, run on a Windows host (git bash)
 CURL_OPTS="--fail --silent --location"
 
-TOOL_FIXAJFSP="https://github.com/applejuicenetz/tools/releases/latest/download/fixajfsp.exe"
+TOOL_FIXAJFSP_URL="https://github.com/applejuicenetz/fixajfsp/releases/latest/download"
 AJCORE_RELEASE_API="https://api.github.com/repos/applejuicenetz/core/releases/latest"
 AJGUI_ZIP="https://github.com/applejuicenetz/gui-java/releases/latest/download/AJCoreGUI.zip"
 AJCORE_ICO="https://github.com/applejuicenetz/core/raw/main/assets/windows/AJCore.ico"
@@ -14,6 +14,8 @@ AJGUI_ICO="https://github.com/applejuicenetz/gui-java/raw/main/assets/windows/AJ
 case "${1}" in
 amd64 | aarch64)
   BUILD_NAME="appleJuice-Portable-${1}"
+  # fixajfsp names its ARM64 build arm64
+  TOOL_FIXAJFSP="${TOOL_FIXAJFSP_URL}/fixajfsp-windows-${1/aarch64/arm64}.exe"
   ;;
 *)
   echo "unsupported arch, use amd64 or aarch64"

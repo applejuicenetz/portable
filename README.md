@@ -15,6 +15,13 @@ Die Portable Version von appleJuice setzt sich zusammen aus:
 - der aktuellsten [AJCoreGUI](https://github.com/applejuicenetz/gui-java/releases)
 - nativen Startern (`Core\Core.exe`, `GUI\GUI.exe`) mit eingebauter Java 25 Runtime, erzeugt per `jpackage --type app-image`
 
+## Links und .ajl-Dateien (fixajfsp)
+
+Die Portable-Version schreibt nichts in die Registry. Damit Windows `ajfsp://`-Links und `.ajl`-Dateien mit der GUI öffnet,
+einmal `fixajfsp.exe` starten (fragt nach Administratorrechten). Das Programm schlägt `GUI\GUI.exe` vor, zeigt den aktuellen Zustand der Registry
+und trägt die Einträge nach einem Klick auf **Registry-Einträge setzen** ein. Nach dem Verschieben des Ordners erneut starten.
+Mehr dazu im Repository [fixajfsp](https://github.com/applejuicenetz/fixajfsp).
+
 ## RAM (-Xmx)
 Der AJCore bekommt automatisch `50%` des _aktuell_ freien RAM.
 Sind also `4GB` RAM verbaut und es sind davon _aktuell_ noch `2GB` frei, 

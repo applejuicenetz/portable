@@ -13,7 +13,9 @@ Python 3. JDK-Architektur und Zielarchitektur müssen übereinstimmen:
 ```
 
 Das Skript lädt die aktuellen stabilen Core- und JavaGUI-Releases und erstellt
-portable App-Images mit gebündelter Java-Laufzeit. GitHub Actions baut und prüft
+portable App-Images mit gebündelter Java-Laufzeit. Zusätzlich legt es `fixajfsp.exe`
+aus dem neuesten Release von `applejuicenetz/fixajfsp` (`fixajfsp-windows-amd64.exe`
+beziehungsweise `-arm64.exe`) in den Wurzelordner; es registriert `GUI\GUI.exe` für `ajfsp://` und `.ajl`. GitHub Actions baut und prüft
 beide ZIP-Artefakte auf `windows-2025` und `windows-11-arm`.
 
 ## Releases und Trigger
