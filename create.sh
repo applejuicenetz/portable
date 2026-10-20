@@ -58,7 +58,7 @@ jpackage --type app-image --name Core \
   --main-jar ajcore.jar \
   --main-class de.applejuicenet.client.core.Core \
   --icon "${WORK}/AJCore.ico" \
-  --add-modules java.desktop,java.management,java.naming,java.sql,java.xml,jdk.crypto.ec,jdk.unsupported \
+  --add-modules java.desktop,java.management,java.naming,java.net.http,java.sql,java.xml,jdk.crypto.ec,jdk.unsupported \
   --java-options --enable-native-access=ALL-UNNAMED \
   --java-options -XX:MaxRAMPercentage=50 \
   --java-options "${HOME_OPT}" \
