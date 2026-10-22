@@ -23,11 +23,11 @@ und trägt die Einträge nach einem Klick auf **Registry-Einträge setzen** ein.
 Mehr dazu im Repository [fixajfsp](https://github.com/applejuicenetz/fixajfsp).
 
 ## RAM (-Xmx)
-Der AJCore bekommt automatisch `50%` des _aktuell_ freien RAM.
-Sind also `4GB` RAM verbaut und es sind davon _aktuell_ noch `2GB` frei, 
-dann bekommt der AJCore `1GB` RAM zugewiesen :tada: 
+Der AJCore bekommt automatisch maximal `50%` des gesamten RAM (`-XX:MaxRAMPercentage=50`).
+Sind also `8GB` RAM verbaut, darf der AJCore bis zu `4GB` nutzen :tada: 
 
-Um den Wert fest zu definieren, muss die Datei `AJCore.l4j.ini` mit dem Inhalt `-Xmx2048m` angelegt werden. 
+Um den Wert fest zu definieren, in der Datei `Core\app\Core.cfg` im Abschnitt `[JavaOptions]` die Zeile `java-options=-Xmx2048m` ergänzen.
+Ein explizites `-Xmx` hat Vorrang vor `-XX:MaxRAMPercentage`. 
 
 ## Home Verzeichnis 
 
